@@ -1,3 +1,9 @@
+const dotenv = require("dotenv")
+
+if (process.env.ENVIRONMENT !== "production") {
+  dotenv.config()
+}
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -30,5 +36,13 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-transformer-remark`,
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.spaceId,
+        accessToken: process.env.accessToken,
+      },
+    },
   ],
 }
